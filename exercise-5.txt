@@ -1,0 +1,6 @@
+use decodemtl_addressbook_import;
+
+truncate table Entry;
+
+select * from Entry;
+Empty set (0.00 sec)
