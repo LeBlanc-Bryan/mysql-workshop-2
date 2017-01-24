@@ -1,0 +1,22 @@
+use decodemtl_addressbook_import
+
+select count(*) from Account;
++----------+
+| count(*) |
++----------+
+|     1000 |
++----------+
+
+select count(*) from AddressBook;
++----------+
+| count(*) |
++----------+
+|     1100 |
++----------+
+
+select count(*) from Entry;
++----------+
+| count(*) |
++----------+
+|     4000 |
++----------+
