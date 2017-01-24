@@ -1,0 +1,22 @@
+use decodemtl_addressbook_import
+
+select count(*) as 'not listed as other'  from Entry where(type !='other');                                                                                                                   
++---------------------+
+| not listed as other |
++---------------------+
+|                2800 |
++---------------------+
+
+select count(*) as 'listed as home or work'  from Entry where(type ='home' or type = 'work');                                                                                                             
++------------------------+
+| listed as home or work |
++------------------------+
+|                   2800 |
++------------------------+
+
+select count(*) as 'listed as phones' from Entry where(subtype = "phone");
++------------------+
+| listed as phones |
++------------------+
+|              600 |
++------------------+

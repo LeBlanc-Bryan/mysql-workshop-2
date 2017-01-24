@@ -32,4 +32,9 @@ select count(*) from Entry where birthday < '1964-12-31';
 |     1403 |
 +----------+
 
-select
+select min(birthday) as 'oldest age'  from Entry;                                                                                                                                                
++---------------------+
+| oldest age          |
++---------------------+
+| 1945-09-02 09:21:58 |
++---------------------+
