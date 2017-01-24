@@ -1,0 +1,74 @@
+describe Account;
+
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| email      | varchar(255) | NO   |     | NULL    |                |
+| password   | varchar(40)  | NO   |     | NULL    |                |
+| createdOn  | datetime     | NO   |     | NULL    |                |
+| modifiedOn | datetime     | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+
+insert into Account values(null, 'bryan@leblanc.com', 'superserial', NOW(), null);
+
+select * from Account;                                                                                                                                                    
++----+-------------------+-------------+---------------------+------------+
+| id | email             | password    | createdOn           | modifiedOn |
++----+-------------------+-------------+---------------------+------------+
+|  1 | bryan@leblanc.com | superserial | 2017-01-24 19:32:11 | NULL       |
++----+-------------------+-------------+---------------------+------------+
+
+describe AddressBook;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| accountId  | int(11)      | NO   |     | NULL    |                |
+| name       | varchar(255) | NO   |     | NULL    |                |
+| createdOn  | datetime     | NO   |     | NULL    |                |
+| modifiedOn | datetime     | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+
+insert into AddressBook values(null, 123, 'Bryan',('2017-01-24 19-32-11'), null);
+
++----+-----------+-------+---------------------+------------+
+| id | accountId | name  | createdOn           | modifiedOn |
++----+-----------+-------+---------------------+------------+
+|  1 |       123 | Bryan | 2017-01-24 19:32:11 | NULL       |
++----+-----------+-------+---------------------+------------+
+
+describe Entry;
++------------------+---------------------------------+------+-----+---------+----------------+
+| Field            | Type                            | Null | Key | Default | Extra          |
++------------------+---------------------------------+------+-----+---------+----------------+
+| id               | int(11)                         | NO   | PRI | NULL    | auto_increment |
+| addressBookId    | int(11)                         | NO   |     | NULL    |                |
+| firstName        | varchar(255)                    | NO   |     | NULL    |                |
+| lastName         | varchar(255)                    | YES  |     | NULL    |                |
+| birthday         | datetime                        | YES  |     | NULL    |                |
+| type             | enum('home','work','other')     | NO   |     | NULL    |                |
+| subtype          | enum('phone','address','email') | NO   |     | NULL    |                |
+| contentLineOne   | varchar(255)                    | NO   |     | NULL    |                |
+| contentLineTwo   | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineThree | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineFour  | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineFive  | varchar(255)                    | YES  |     | NULL    |                |
++------------------+---------------------------------+------+-----+---------+----------------+
+
+ insert into Entry values(null, 123, 'Bryan', 'LeBlanc', '1990-03-01', 'home', 'email', null, null, null, null, null), (null, 124, 'Karl', 'Marx', '1818-05-05', 'work', 'phone', null, null, null, null, null), (null, 125, 'Rick', 'Sanchez', '2015-01-01', 'other', 'address', null, null, null, null, null);
+ 
+update Entry set contentLineOne='bryan@leblanc.com' where id=1;
+
+update Entry set contentLineOne='555-555-5555' where id=2;                                                                                                                         
+
+update Entry set contentLineOne='universe c137' where id=3  
+
+select * from Entry;
++----+---------------+-----------+----------+---------------------+-------+---------+-------------------+----------------+------------------+-----------------+-----------------+
+| id | addressBookId | firstName | lastName | birthday            | type  | subtype | contentLineOne    | contentLineTwo | contentLineThree | contentLineFour | contentLineFive |
++----+---------------+-----------+----------+---------------------+-------+---------+-------------------+----------------+------------------+-----------------+-----------------+
+|  1 |           123 | Bryan     | LeBlanc  | 1990-03-01 00:00:00 | home  | email   | bryan@leblanc.com | NULL           | NULL             | NULL            | NULL            |
+|  2 |           124 | Karl      | Marx     | 1818-05-05 00:00:00 | work  | phone   | 555-555-5555      | NULL           | NULL             | NULL            | NULL            |
+|  3 |           125 | Rick      | Sanchez  | 2015-01-01 00:00:00 | other | address | universe c137     | NULL           | NULL             | NULL            | NULL            |
++----+---------------+-----------+----------+---------------------+-------+---------+-------------------+----------------+------------------+-----------------+-----------------+
