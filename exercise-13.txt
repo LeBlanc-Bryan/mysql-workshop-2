@@ -1,0 +1,23 @@
+select count(contentLineOne) as 'phones starting with area code 3XX' from Entry  where contentLineOne like '(3%'
+
++------------------------------------+
+| phones starting with area code 3XX |
++------------------------------------+
+|                                 39 |
++------------------------------------+
+
+select count(*) as "Home phones not containing 5" from Entry where subtype= 'phone' and type= 'home' and contentLineOne not like '%5%';
+
++------------------------------+
+| Home phones not containing 5 |
++------------------------------+
+|                           76 |
++------------------------------+
+
+select count(*) as 'Work phones with a country code' from Entry where subtype='phone' and type='work' and contentLineOne not like '%(%';                                                             
+
++---------------------------------+
+| Work phones with a country code |
++---------------------------------+
+|                              60 |
++---------------------------------+
